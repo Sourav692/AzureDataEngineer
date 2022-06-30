@@ -27,6 +27,9 @@
 				},
 				{
 					"name": "FlattenData"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -54,7 +57,27 @@
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: false) ~> FlattenData",
-				"FlattenData sink(allowSchemaDrift: true,",
+				"FlattenData select(mapColumn(",
+				"          AnchorEmployeeBestKnowerP2PScoreata = data.AnchorEmployeeBestKnowerP2PScore,",
+				"          AnchorEmployeeNameText = data.AnchorEmployeeNameText,",
+				"          AnchorEmployeePersonMd5 = data.AnchorEmployeePersonMd5,",
+				"          AnchorEmployeeSeniorityLevel = data.AnchorEmployeeSeniorityLevel,",
+				"          AnchorJobCompanyName = data.AnchorJobCompanyName,",
+				"          AnchorTitleText = data.AnchorTitleText,",
+				"          BestKnowerNameText = data.BestKnowerNameText,",
+				"          BestKnowerUserKeyMd5 = data.BestKnowerUserKeyMd5,",
+				"          BestUrlText = data.BestUrlText,",
+				"          CompanyMd5 = data.CompanyMd5,",
+				"          CompanyNameText = data.CompanyNameText,",
+				"          Score = data.Score,",
+				"          WeKnowAnchorEmployeeScore = data.WeKnowAnchorEmployeeScore,",
+				"          WeKnowCompany = data.WeKnowCompany,",
+				"          Employees = data.Employees,",
+				"          Introducers = data.Introducers",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",

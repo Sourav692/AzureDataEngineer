@@ -1,0 +1,389 @@
+{
+	"name": "InputJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Input_LS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"input_file": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().input_file",
+					"type": "Expression"
+				},
+				"fileSystem": "input"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"are_more": {
+					"type": "boolean"
+				},
+				"data": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"CompanyMd5": {
+								"type": "string"
+							},
+							"CompanyNameText": {
+								"type": "string"
+							},
+							"BestUrlText": {
+								"type": "string"
+							},
+							"WeKnowCompany": {
+								"type": "string"
+							},
+							"AnchorEmployeeBestKnowerP2PScore": {
+								"type": "integer"
+							},
+							"AnchorEmployeePersonMd5": {
+								"type": "string"
+							},
+							"AnchorEmployeeNameText": {
+								"type": "string"
+							},
+							"AnchorJobCompanyName": {
+								"type": "string"
+							},
+							"AnchorTitleText": {
+								"type": "string"
+							},
+							"AnchorEmployeeSeniorityLevel": {
+								"type": "string"
+							},
+							"BestKnowerUserKeyMd5": {
+								"type": "string"
+							},
+							"BestKnowerNameText": {
+								"type": "string"
+							},
+							"WeKnowAnchorEmployeeScore": {
+								"type": "integer"
+							},
+							"Score": {
+								"type": "integer"
+							},
+							"Urls": {
+								"type": "object",
+								"properties": {
+									"data": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"CoUrl": {
+													"type": "string"
+												},
+												"IdentifierMd5": {
+													"type": "string"
+												},
+												"CurrentAsOf": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"total_item_count": {
+										"type": "integer"
+									},
+									"page_start": {
+										"type": "integer"
+									},
+									"page_end": {
+										"type": "integer"
+									},
+									"are_more": {
+										"type": "boolean"
+									}
+								}
+							},
+							"Aliases": {
+								"type": "object",
+								"properties": {
+									"data": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"CoNameAlias": {
+													"type": "string"
+												},
+												"IdentifierMd5": {
+													"type": "string"
+												},
+												"CurrentAsOf": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"total_item_count": {
+										"type": "integer"
+									},
+									"page_start": {
+										"type": "integer"
+									},
+									"page_end": {
+										"type": "integer"
+									},
+									"are_more": {
+										"type": "boolean"
+									}
+								}
+							},
+							"Employees": {
+								"type": "object",
+								"properties": {
+									"data": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"CompanyMd5": {
+													"type": "string"
+												},
+												"PersonNameText": {
+													"type": "string"
+												},
+												"PersonMd5": {
+													"type": "string"
+												},
+												"TitleText": {
+													"type": "string"
+												},
+												"CorpLevelCompanyName": {
+													"type": "string"
+												},
+												"JobCompanyName": {
+													"type": "string"
+												},
+												"SeniorityLevel": {
+													"type": "string"
+												},
+												"JobCurrentAsOf": {
+													"type": "string"
+												},
+												"InfluenceScore": {
+													"type": "integer"
+												},
+												"KnowerUserKeyMd5": {
+													"type": "string"
+												},
+												"KnowerNameText": {
+													"type": "string"
+												},
+												"UserKnowsPersonScore": {
+													"type": "integer"
+												},
+												"ContactName": {
+													"type": "string"
+												},
+												"ContactBestJobCorpLevelCompanyName": {
+													"type": "string"
+												},
+												"ContactBestJobCompanyMd5": {
+													"type": "string"
+												},
+												"ContactBestJobMatchedCompanyName": {
+													"type": "string"
+												},
+												"ContactBestJobTitleText": {
+													"type": "string"
+												},
+												"ContactBestJobCurrentAsOf": {
+													"type": "string"
+												},
+												"ContactBestEmail": {
+													"type": "string"
+												},
+												"ContactBestEmailAsOf": {
+													"type": "string"
+												},
+												"WeKnowPersonScore": {
+													"type": "integer"
+												}
+											}
+										}
+									},
+									"total_item_count": {
+										"type": "integer"
+									},
+									"page_start": {
+										"type": "integer"
+									},
+									"page_end": {
+										"type": "integer"
+									},
+									"are_more": {
+										"type": "boolean"
+									}
+								}
+							},
+							"Introducers": {
+								"type": "object",
+								"properties": {
+									"data": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"KnoweeCompanyMd5": {
+													"type": "string"
+												},
+												"IntroducerScore": {
+													"type": "integer"
+												},
+												"UserKeyMd5": {
+													"type": "string"
+												},
+												"IntroducerPersonKeyMd5": {
+													"type": "string"
+												},
+												"IntroducerName": {
+													"type": "string"
+												},
+												"IntroducerBestEmailAddressText": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"total_item_count": {
+										"type": "integer"
+									},
+									"page_start": {
+										"type": "integer"
+									},
+									"page_end": {
+										"type": "integer"
+									},
+									"are_more": {
+										"type": "boolean"
+									}
+								}
+							}
+						}
+					}
+				},
+				"page_start": {
+					"type": "integer"
+				},
+				"page_end": {
+					"type": "integer"
+				},
+				"total_item_count": {
+					"type": "integer"
+				},
+				"query": {
+					"type": "object",
+					"properties": {
+						"command": {
+							"type": "string"
+						}
+					}
+				},
+				"context": {
+					"type": "object",
+					"properties": {
+						"queryGuid": {
+							"type": "string"
+						},
+						"user": {
+							"type": "null"
+						},
+						"teamName": {
+							"type": "string"
+						},
+						"teamNumber": {
+							"type": "integer"
+						},
+						"scope": {
+							"type": "string"
+						}
+					}
+				},
+				"id": {
+					"type": "string"
+				},
+				"parents": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"familyName": {
+								"type": "string"
+							},
+							"givenName": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"children": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"familyName": {
+								"type": "string"
+							},
+							"givenName": {
+								"type": "string"
+							},
+							"gender": {
+								"type": "string"
+							},
+							"grade": {
+								"type": "integer"
+							},
+							"pets": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"givenName": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"address": {
+					"type": "object",
+					"properties": {
+						"state": {
+							"type": "string"
+						},
+						"county": {
+							"type": "string"
+						},
+						"city": {
+							"type": "string"
+						}
+					}
+				},
+				"creationDate": {
+					"type": "integer"
+				},
+				"isRegistered": {
+					"type": "boolean"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

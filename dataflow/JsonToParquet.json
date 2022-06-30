@@ -1,0 +1,58 @@
+{
+	"name": "JsonToParquet",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "InputJSON",
+						"type": "DatasetReference"
+					},
+					"name": "SourceJSON"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "OutputJSON",
+						"type": "DatasetReference"
+					},
+					"name": "SinkJSON"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          are_more as boolean,",
+				"          context as (queryGuid as string, scope as string, teamName as string, teamNumber as boolean, user as string),",
+				"          data as (Aliases as (are_more as boolean, data as (CoNameAlias as string, CurrentAsOf as timestamp, IdentifierMd5 as string)[], page_end as short, page_start as boolean, total_item_count as short), AnchorEmployeeBestKnowerP2PScore as short, AnchorEmployeeNameText as string, AnchorEmployeePersonMd5 as string, AnchorEmployeeSeniorityLevel as string, AnchorJobCompanyName as string, AnchorTitleText as string, BestKnowerNameText as string, BestKnowerUserKeyMd5 as string, BestUrlText as string, CompanyMd5 as string, CompanyNameText as string, Employees as (are_more as boolean, data as (CompanyMd5 as string, ContactBestEmail as string, ContactBestEmailAsOf as timestamp, ContactBestJobCompanyMd5 as string, ContactBestJobCorpLevelCompanyName as string, ContactBestJobCurrentAsOf as timestamp, ContactBestJobMatchedCompanyName as string, ContactBestJobTitleText as string, ContactName as string, CorpLevelCompanyName as string, InfluenceScore as short, IsFormerJob as boolean, JobCompanyName as string, JobCurrentAsOf as timestamp, KnowerNameText as string, KnowerUserKeyMd5 as string, PersonMd5 as string, PersonNameText as string, SeniorityLevel as string, TitleText as string, UserKnowsPersonScore as short, WeKnowPersonScore as short)[], page_end as short, page_start as boolean, total_item_count as short), Introducers as (are_more as boolean, data as (IntroducerBestEmailAddressText as string, IntroducerName as string, IntroducerPersonKeyMd5 as string, IntroducerScore as short, KnoweeCompanyMd5 as string, UserKeyMd5 as string)[], page_end as short, page_start as boolean, total_item_count as short), Score as short, Urls as (are_more as boolean, data as (CoUrl as string, CurrentAsOf as timestamp, IdentifierMd5 as string)[], page_end as short, page_start as boolean, total_item_count as short), WeKnowAnchorEmployeeScore as short, WeKnowCompany as string)[],",
+				"          page_end as short,",
+				"          page_start as boolean,",
+				"          query as (command as string),",
+				"          total_item_count as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'arrayOfDocuments') ~> SourceJSON",
+				"SourceJSON select(mapColumn(",
+				"          data",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SinkJSON"
+			]
+		}
+	}
+}

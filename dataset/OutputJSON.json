@@ -1,0 +1,28 @@
+{
+	"name": "OutputJSON",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Output_LS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"subfolder": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().subfolder",
+					"type": "Expression"
+				},
+				"fileSystem": "output"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

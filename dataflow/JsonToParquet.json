@@ -23,7 +23,10 @@
 			],
 			"transformations": [
 				{
-					"name": "select1"
+					"name": "SelectDataColumn"
+				},
+				{
+					"name": "FlattenData"
 				}
 			],
 			"scriptLines": [
@@ -44,8 +47,14 @@
 				"          data",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 sink(allowSchemaDrift: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectDataColumn",
+				"SelectDataColumn foldDown(unroll(data, data),",
+				"     mapColumn(",
+				"          data",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> FlattenData",
+				"FlattenData sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",

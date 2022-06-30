@@ -5,20 +5,12 @@
 			"referenceName": "Input_LS",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"input_file": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().input_file",
-					"type": "Expression"
-				},
+				"fileName": "test3.json",
 				"fileSystem": "input"
 			}
 		},

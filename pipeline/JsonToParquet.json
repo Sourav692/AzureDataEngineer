@@ -19,9 +19,6 @@
 						"referenceName": "JsonToParquet",
 						"type": "DataFlowReference",
 						"datasetParameters": {
-							"SourceJSON": {
-								"input_file": "DotAlign.json"
-							},
 							"SinkJSON": {
 								"subfolder": {
 									"value": "@utcnow()",

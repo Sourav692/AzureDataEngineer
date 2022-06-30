@@ -19,6 +19,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "SinkJSON"
+				},
+				{
+					"dataset": {
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					},
+					"name": "SinkParquet"
 				}
 			],
 			"transformations": [
@@ -29,7 +36,7 @@
 					"name": "FlattenData"
 				},
 				{
-					"name": "select1"
+					"name": "SelectEmployeeIntroducer"
 				}
 			],
 			"scriptLines": [
@@ -76,14 +83,22 @@
 				"          Introducers = data.Introducers",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 sink(allowSchemaDrift: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectEmployeeIntroducer",
+				"SelectEmployeeIntroducer sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> SinkJSON"
+				"     skipDuplicateMapOutputs: true) ~> SinkJSON",
+				"SelectEmployeeIntroducer sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SinkParquet"
 			]
 		}
 	}

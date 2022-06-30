@@ -19,11 +19,24 @@
 						"type": "DatasetReference"
 					},
 					"name": "SinkJSON"
+				},
+				{
+					"dataset": {
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					},
+					"name": "SinkParquet"
 				}
 			],
 			"transformations": [
 				{
-					"name": "select1"
+					"name": "SelectDataColumn"
+				},
+				{
+					"name": "FlattenData"
+				},
+				{
+					"name": "SelectEmployeeIntroducer"
 				}
 			],
 			"scriptLines": [
@@ -44,14 +57,48 @@
 				"          data",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1 sink(allowSchemaDrift: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectDataColumn",
+				"SelectDataColumn foldDown(unroll(data, data),",
+				"     mapColumn(",
+				"          data",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> FlattenData",
+				"FlattenData select(mapColumn(",
+				"          AnchorEmployeeBestKnowerP2PScoreata = data.AnchorEmployeeBestKnowerP2PScore,",
+				"          AnchorEmployeeNameText = data.AnchorEmployeeNameText,",
+				"          AnchorEmployeePersonMd5 = data.AnchorEmployeePersonMd5,",
+				"          AnchorEmployeeSeniorityLevel = data.AnchorEmployeeSeniorityLevel,",
+				"          AnchorJobCompanyName = data.AnchorJobCompanyName,",
+				"          AnchorTitleText = data.AnchorTitleText,",
+				"          BestKnowerNameText = data.BestKnowerNameText,",
+				"          BestKnowerUserKeyMd5 = data.BestKnowerUserKeyMd5,",
+				"          BestUrlText = data.BestUrlText,",
+				"          CompanyMd5 = data.CompanyMd5,",
+				"          CompanyNameText = data.CompanyNameText,",
+				"          Score = data.Score,",
+				"          WeKnowAnchorEmployeeScore = data.WeKnowAnchorEmployeeScore,",
+				"          WeKnowCompany = data.WeKnowCompany,",
+				"          Employees = data.Employees,",
+				"          Introducers = data.Introducers",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectEmployeeIntroducer",
+				"SelectEmployeeIntroducer sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> SinkJSON"
+				"     skipDuplicateMapOutputs: true) ~> SinkJSON",
+				"SelectEmployeeIntroducer sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SinkParquet"
 			]
 		}
 	}

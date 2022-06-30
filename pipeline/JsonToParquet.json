@@ -24,7 +24,7 @@
 							},
 							"SinkJSON": {
 								"subfolder": {
-									"value": "@pipeline().RunId",
+									"value": "@utcnow()",
 									"type": "Expression"
 								}
 							}

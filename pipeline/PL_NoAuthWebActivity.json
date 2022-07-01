@@ -13,7 +13,12 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Destination",
+						"value": "output/@{'weather'}/"
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "RestSource",

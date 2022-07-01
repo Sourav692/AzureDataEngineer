@@ -1,0 +1,26 @@
+{
+	"name": "WeatherAPI",
+	"properties": {
+		"parameters": {
+			"cityName": {
+				"type": "string",
+				"defaultValue": "Kolkata"
+			},
+			"accessKey": {
+				"type": "string",
+				"defaultValue": "7b1a503846c18a56136f8ab3c90d5017"
+			}
+		},
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "@{concat('http://api.weatherstack.com/current?access_key=', linkedService().accessKey, '&query=', linkedService().cityName)}",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

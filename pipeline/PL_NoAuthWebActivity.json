@@ -25,12 +25,12 @@
 						}
 					},
 					"sink": {
-						"type": "ParquetSink",
+						"type": "JsonSink",
 						"storeSettings": {
 							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "ParquetWriteSettings"
+							"type": "JsonWriteSettings"
 						}
 					},
 					"enableStaging": false
@@ -43,8 +43,11 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Parquet1",
-						"type": "DatasetReference"
+						"referenceName": "OutputJSON",
+						"type": "DatasetReference",
+						"parameters": {
+							"subfolder": "weather"
+						}
 					}
 				]
 			}

@@ -67,71 +67,31 @@
 							"Score": {
 								"type": "integer"
 							},
-							"Urls": {
-								"type": "object",
-								"properties": {
-									"data": {
-										"type": "array",
-										"items": {
-											"type": "object",
-											"properties": {
-												"CoUrl": {
-													"type": "string"
-												},
-												"IdentifierMd5": {
-													"type": "string"
-												},
-												"CurrentAsOf": {
-													"type": "string"
+							"Identifiers": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"IdProperty": {
+											"type": "string"
+										},
+										"Aliases": {
+											"type": "array",
+											"items": {
+												"type": "object",
+												"properties": {
+													"Md5": {
+														"type": "string"
+													},
+													"Text": {
+														"type": "string"
+													},
+													"Type": {
+														"type": "string"
+													}
 												}
 											}
 										}
-									},
-									"total_item_count": {
-										"type": "integer"
-									},
-									"page_start": {
-										"type": "integer"
-									},
-									"page_end": {
-										"type": "integer"
-									},
-									"are_more": {
-										"type": "boolean"
-									}
-								}
-							},
-							"Aliases": {
-								"type": "object",
-								"properties": {
-									"data": {
-										"type": "array",
-										"items": {
-											"type": "object",
-											"properties": {
-												"CoNameAlias": {
-													"type": "string"
-												},
-												"IdentifierMd5": {
-													"type": "string"
-												},
-												"CurrentAsOf": {
-													"type": "string"
-												}
-											}
-										}
-									},
-									"total_item_count": {
-										"type": "integer"
-									},
-									"page_start": {
-										"type": "integer"
-									},
-									"page_end": {
-										"type": "integer"
-									},
-									"are_more": {
-										"type": "boolean"
 									}
 								}
 							},
@@ -305,74 +265,6 @@
 							"type": "string"
 						}
 					}
-				},
-				"id": {
-					"type": "string"
-				},
-				"parents": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"familyName": {
-								"type": "string"
-							},
-							"givenName": {
-								"type": "string"
-							}
-						}
-					}
-				},
-				"children": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"familyName": {
-								"type": "string"
-							},
-							"givenName": {
-								"type": "string"
-							},
-							"gender": {
-								"type": "string"
-							},
-							"grade": {
-								"type": "integer"
-							},
-							"pets": {
-								"type": "array",
-								"items": {
-									"type": "object",
-									"properties": {
-										"givenName": {
-											"type": "string"
-										}
-									}
-								}
-							}
-						}
-					}
-				},
-				"address": {
-					"type": "object",
-					"properties": {
-						"state": {
-							"type": "string"
-						},
-						"county": {
-							"type": "string"
-						},
-						"city": {
-							"type": "string"
-						}
-					}
-				},
-				"creationDate": {
-					"type": "integer"
-				},
-				"isRegistered": {
-					"type": "boolean"
 				}
 			}
 		}

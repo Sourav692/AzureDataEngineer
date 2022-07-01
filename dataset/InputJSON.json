@@ -11,8 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "test3.json",
-				"folderPath": "Flatten",
-				"fileSystem": "output"
+				"fileSystem": "input"
 			}
 		},
 		"schema": {

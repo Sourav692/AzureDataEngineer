@@ -1,0 +1,16 @@
+{
+	"name": "InputWeatherData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "WeatherAPI",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"cityName": "Kolkata",
+				"accessKey": "7b1a503846c18a56136f8ab3c90d5017"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

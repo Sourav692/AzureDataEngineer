@@ -52,7 +52,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine') ~> SourceJSON",
+				"     documentForm: 'arrayOfDocuments') ~> SourceJSON",
 				"SourceJSON select(mapColumn(",
 				"          data",
 				"     ),",

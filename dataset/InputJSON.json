@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "DotAlign.json",
+				"fileName": "test3.json",
 				"fileSystem": "input"
 			}
 		},

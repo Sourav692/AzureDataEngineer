@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Copy JSON",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -20,7 +20,6 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"modifiedDatetimeStart": "2022-07-01T00:00:00.821Z",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -30,8 +29,7 @@
 					"sink": {
 						"type": "JsonSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": "FlattenHierarchy"
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
 							"type": "JsonWriteSettings"
@@ -50,7 +48,7 @@
 						"referenceName": "OutputJSON",
 						"type": "DatasetReference",
 						"parameters": {
-							"subfolder": "flattenJson"
+							"subfolder": "Flatten"
 						}
 					}
 				]

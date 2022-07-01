@@ -37,6 +37,9 @@
 				},
 				{
 					"name": "SelectEmployeeIntroducer"
+				},
+				{
+					"name": "FlattenIdentifiers"
 				}
 			],
 			"scriptLines": [
@@ -52,7 +55,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'singleDocument') ~> SourceJSON",
+				"     documentForm: 'documentPerLine') ~> SourceJSON",
 				"SourceJSON select(mapColumn(",
 				"          data",
 				"     ),",
@@ -64,7 +67,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: false,",
 				"     skipDuplicateMapOutputs: false) ~> FlattenData",
-				"FlattenData select(mapColumn(",
+				"FlattenIdentifiers select(mapColumn(",
 				"          AnchorEmployeeBestKnowerP2PScoreata = data.AnchorEmployeeBestKnowerP2PScore,",
 				"          AnchorEmployeeNameText = data.AnchorEmployeeNameText,",
 				"          AnchorEmployeePersonMd5 = data.AnchorEmployeePersonMd5,",
@@ -84,6 +87,19 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectEmployeeIntroducer",
+				"FlattenData foldDown(unroll(data.Identifiers.Aliases, data.Identifiers.Aliases),",
+				"     mapColumn(",
+				"          Md5 = data.Identifiers.Aliases.Md5,",
+				"          Text = data.Identifiers.Aliases.Text,",
+				"          Type = data.Identifiers.Aliases.Type,",
+				"          CompanyMd5 = data.CompanyMd5,",
+				"          CompanyNameText = data.CompanyNameText,",
+				"          BestUrlText = data.BestUrlText,",
+				"          Employee = data.Employees,",
+				"          Introducers = data.Introducers",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> FlattenIdentifiers",
 				"SelectEmployeeIntroducer sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",

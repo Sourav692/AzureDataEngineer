@@ -55,9 +55,6 @@
 			"outputFolderName": {
 				"type": "string",
 				"defaultValue": "outputImageFiles"
-			},
-			"imageFolderName": {
-				"type": "string"
 			}
 		},
 		"annotations": []

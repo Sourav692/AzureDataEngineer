@@ -5,11 +5,20 @@
 			"referenceName": "Output_LS",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"imageFolderName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Binary",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().imageFolderName",
+					"type": "Expression"
+				},
 				"fileSystem": "outputimage"
 			}
 		}
